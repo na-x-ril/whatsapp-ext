@@ -44,13 +44,22 @@ function generateTextFile(content) {
   return new File([blob], "message.txt", { type: "text/plain" });
 }
 
+// kirim dokumen
+function generateTextFile(content) {
+  const blob = new Blob([content], { type: "text/plain" });
+  return new File([blob], "message.txt", { type: "text/plain" });
+}
+
 async function sendDocument(messageSizeInMB = 1, count = 1) {
   if (count < 1) return;
 
-  const message = "A".repeat(messageSizeInMB * 1024 * 1024); // Buat string sebesar 1MB
+  // Buat string dengan karakter acak
+  const message = Array.from({ length: messageSizeInMB * 1024 * 1024 }, () => 
+    Math.random().toString(36).charAt(2)).join('');
+  
   const file = generateTextFile(message);
 
-  // Buka file picker sekali
+  // Buka file picker
   await waitForElement('#main > footer > div.x1n2onr6.xhtitgo.x9f619.x78zum5.x1q0g3np.xuk3077.x193iq5w.x122xwht.x1bmpntp.xs9asl8.x1swvt13.x1pi30zi.xnpuxes.copyable-area > div > span > div > div.x9f619.x78zum5.x6s0dn4.xl56j7k.x1ofbdpd._ak1m > div > button')
     .then((attachButton) => attachButton.click());
 
@@ -58,10 +67,10 @@ async function sendDocument(messageSizeInMB = 1, count = 1) {
   await waitForElement('input[type="file"]').then((fileInput) => {
     const dataTransfer = new DataTransfer();
     for (let i = 0; i < count; i++) {
-      dataTransfer.items.add(file); // Tambahkan file sebanyak 'count' ke dalam DataTransfer
+      dataTransfer.items.add(file);
     }
-    fileInput.files = dataTransfer.files; // Masukkan file ke dalam input file
-    fileInput.dispatchEvent(new Event("change", { bubbles: true })); // Trigger input change
+    fileInput.files = dataTransfer.files;
+    fileInput.dispatchEvent(new Event("change", { bubbles: true }));
   });
 
   // Tunggu tombol kirim dan klik
