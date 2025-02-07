@@ -29,7 +29,7 @@ function sendMessage(message, count = 1) {
     document.execCommand("insertText", false, message);
     chatInput.dispatchEvent(new Event("input", { bubbles: true }));
 
-    await waitForElement('button:has(span[data-icon="send"])').then(async (sendButton) => {
+    await waitForElement('button[aria-label="Mengirim"]').then(async (sendButton) => {
       await sendButton.click();
       sendLoop(index + 1);
     }).catch(() => console.error("Tombol kirim tidak ditemukan!"));
@@ -74,5 +74,5 @@ async function sendDocument(messageSizeInMB = 1, count = 1) {
   });
 
   // Tunggu tombol kirim dan klik
-  await waitForElement('div[role="button"]:has(span[data-icon="send"])').then((sendButton) => sendButton.click());
+  await waitForElement('div[role="button"][aria-label="Mengirim"]').then((sendButton) => sendButton.click());
 }
