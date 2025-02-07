@@ -1,0 +1,16 @@
+@media screen and (min-width: 1441px) {
+    .app-wrapper-web ._aigs:not(._as6h) {
+        top: 0 !important;
+        width: 100% !important;
+        max-width: unset !important;
+        height: 100% !important;
+    }
+}
+
+@media not all and (display-mode: standalone) {
+    @media screen and (min-width: 1700px) {
+        .app-wrapper-web ._aigs {
+            max-width: unset !important;
+        }
+    }
+}
