@@ -14,6 +14,7 @@
     {
       "matches": ["https://web.whatsapp.com/"],
       "js": ["src/whatsapp.js"],
+      "css": ["src/whatsapp.css"],
       "world": "MAIN",
       "all_frames": true
     }
