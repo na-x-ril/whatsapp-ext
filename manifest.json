@@ -1,0 +1,27 @@
+{
+  "name": "Whatsapp Extension",
+  "version": "1.0",
+  "description": "Add utilities to Whatsapp Web",
+  "manifest_version": 3,
+  "permissions": ["activeTab", "scripting", "storage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "Injector@example.com"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/"],
+      "js": ["src/whatsapp.js"],
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["rsc/./*.js", "rsc/./*.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
