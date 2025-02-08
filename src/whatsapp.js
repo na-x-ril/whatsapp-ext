@@ -44,12 +44,6 @@ function generateTextFile(content) {
   return new File([blob], "message.txt", { type: "text/plain" });
 }
 
-// kirim dokumen
-function generateTextFile(content) {
-  const blob = new Blob([content], { type: "text/plain" });
-  return new File([blob], "message.txt", { type: "text/plain" });
-}
-
 async function sendDocument(messageSizeInMB = 1, count = 1) {
   if (count < 1) return;
 
